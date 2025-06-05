@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Monitoring Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+  <script defer src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <button id="toggleSidebar">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="#" data-view="metrics">Thông số</a></li>
+      <li><a href="#" data-view="chart">Biểu đồ</a></li>
+      <li><a href="#" data-view="camera">Camera</a></li>
+    </ul>
+    <button id="logoutBtn" style="display:none; position:absolute; bottom: 150px;">Đăng xuất</button>
+  </div>
+
+  <div class="login-page" id="loginPage">
+    <div class="login-box">
+      <h2>Đăng nhập</h2>
+      <input type="text" id="username" placeholder="Tên đăng nhập" />
+      <input type="password" id="password" placeholder="Mật khẩu" />
+      <label>
+        <input type="checkbox" id="rememberMe" /> Nhớ tài khoản
+      </label>
+      <button onclick="login()">Đăng nhập</button>
+      <p id="loginError" style="color: red; display: none;">Sai tài khoản hoặc mật khẩu!</p>
+    </div>
+  </div>  
+  
+  <div class="dashboard">
+  
+    <div class="metrics-view view-section" style="display:block;">
+      <h1>THÔNG SỐ SỨC KHỎE</h1>
+      <div class="container">
+        <div class="card">
+          <h2>Lượng Oxy</h2>
+          <p class="value" id="SpO2">-- %</p>
+        </div>
+        <div class="card">
+          <h2>Nhiệt độ cơ thể</h2>
+          <p class="value" id="bodytemperature">-- °C</p>
+        </div>
+        <div class="card">
+          <h2>Nhịp tim</h2>
+          <p class="value" id="pulse">-- BMP</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="chart-view view-section" style="display:block;">
+      <h1>BIỂU ĐỒ SỨC KHỎE</h1>
+      <div class="">
+        <canvas id="chartCanvas"></canvas>
+      </div>
+    </div>
+  
+    <div class="camera-view view-section" style="display:none;">
+      <div class="">
+        <iframe id="esp32cam_stream" src="" style="width: 100%; height: 580px; border: none;"></iframe>
+      </div>
+    </div> 
+</body>
+</html>
