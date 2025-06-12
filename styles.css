@@ -127,7 +127,7 @@ h1 {
 .health-status {
   position: fixed;
   left: 10px;
-  bottom: -250px;
+  bottom: -110px;
   background: rgba(255,255,255,0.95);
   padding: 12px 24px;
   border-radius: 12px;
