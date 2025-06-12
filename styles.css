@@ -123,6 +123,28 @@ h1 {
   border: 4px solid #ccc;
 }
 
+/* Trạng thái sức khỏe */
+.health-status {
+  position: fixed;
+  left: 10px;
+  bottom: -250px;
+  background: rgba(255,255,255,0.95);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0a7e07;
+  z-index: 9999;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  transition: background 0.3s, color 0.3s;
+}
+.health-status.danger {
+  color: #c62828;
+}
+.health-status.warning {
+  color: #e69500;
+}
+
 /* ==================== BIỂU ĐỒ ==================== */
 canvas {
   width: 100%;

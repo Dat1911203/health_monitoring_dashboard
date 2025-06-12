@@ -63,7 +63,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database()
-  
+
+// Hàm lấy trạng thái
+function getHealthStatusText(result) {
+  switch (result) {
+    case 0: return "Tốt";
+    case 1: return "Bị bệnh";
+    case 2: return "Nguy hiểm";
+    default: return "--";
+  }
+}
+function getHealthStatusClass(result) {
+  switch (result) {
+    case 0: return "";
+    case 1: return "warning";
+    case 2: return "danger";
+    default: return "";
+  }
+}
+
 // Hàm lấy dữ liệu
 function listenData() {
   database.ref("HealthMonitoring").on("child_added", snapshot => {
@@ -76,9 +94,18 @@ function listenData() {
         data.bodytemperature != null
       ) {
 
-      document.getElementById('SpO2').innerText = data.SpO2 + ' %';
-      document.getElementById('bodytemperature').innerText = data.bodytemperature + ' °C';
-      document.getElementById('pulse').innerText = data.pulse + ' BPM';
+        document.getElementById('SpO2').innerText = data.SpO2 + ' %';
+        document.getElementById('bodytemperature').innerText = data.bodytemperature + ' °C';
+        document.getElementById('pulse').innerText = data.pulse + ' BPM';
+
+        if (data.result != null) {
+          const statusText = getHealthStatusText(data.result);
+          const statusClass = getHealthStatusClass(data.result);
+          const healthStatus = document.getElementById('healthStatus');
+          const healthStatusValue = document.getElementById('healthStatusValue');
+          healthStatusValue.textContent = statusText;
+          healthStatus.className = 'health-status ' + statusClass;
+        }
 
         if (!chart.data.labels.includes(data.timestamp)) {
           chart.data.labels.push(data.timestamp);
