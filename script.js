@@ -131,7 +131,7 @@ function listenData() {
   
 // Hàm lấy stream ESP32-CAM
 function updateCamStream() {
-  document.getElementById("esp32cam_stream").src = "http://10.102.207.181";
+  document.getElementById("esp32cam_stream").src = "http://10.71.163.181";
 }
 
 document.querySelector('[data-view="camera"]').addEventListener('click', function() {
